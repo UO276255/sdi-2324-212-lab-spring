@@ -29,10 +29,15 @@ public class ProfessorService {
                 .filter(p -> p.getId().equals(id)).findFirst().get();
     }
     public void addProfessor(Professor p) {
-        if (p.getId().equals(null)) {
+        if (p.getId() == null) {
             p.setId(profesores.get(profesores.size() - 1).getId() + 1);
         }
         profesores.add(p);
+    }
+
+    public void editProfessor(Professor p){
+        Professor p1= profesores.stream()
+                .filter(prof -> prof.getId().equals(p.getId())).findFirst().get();
     }
 
     public void deleteProfessor(Long id){

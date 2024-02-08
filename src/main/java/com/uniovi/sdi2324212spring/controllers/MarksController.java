@@ -23,10 +23,10 @@ public class MarksController {
         return "mark/add";
     }
 
-    @RequestMapping("/mark/details/{id}")
-    public String getDetail(Model model, @PathVariable Long id) {
-        model.addAttribute("mark", marksService.getMark(id));
-        return "mark/details";
+    @RequestMapping(value = "/mark/add", method = RequestMethod.POST)
+    public String setMark(@ModelAttribute Mark mark) {
+        marksService.addMark(mark);
+        return "redirect:/mark/list";
     }
     @RequestMapping("/mark/delete/{id}")
     public String deleteMark(@PathVariable Long id) {
@@ -43,6 +43,12 @@ public class MarksController {
         mark.setId(id);
         marksService.addMark(mark);
         return "redirect:/mark/details/"+id;
+    }
+
+    @RequestMapping("/mark/details/{id}")
+    public String getDetail(Model model, @PathVariable Long id) {
+        model.addAttribute("p", marksService.getMark(id));
+        return "mark/details";
     }
 
 
