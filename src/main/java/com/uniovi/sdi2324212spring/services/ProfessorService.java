@@ -17,7 +17,7 @@ public class ProfessorService {
     @PostConstruct
     public void init() {
         profesores.add(new Professor(1L,"114568675D","Juan","Gonzalez Campos","Matematicas"));
-        profesores.add(new Professor(2L,"256482169K","Susana","Lopez Hidalgo","Historia"));
+        profesores.add(new Professor(2L,"256482169K","Susana", "Lopez Hidalgo","Historia"));
     }
 
     public List<Professor> getProfesores(){
@@ -32,12 +32,14 @@ public class ProfessorService {
         if (p.getId() == null) {
             p.setId(profesores.get(profesores.size() - 1).getId() + 1);
         }
+        System.out.println(p.toString());
         profesores.add(p);
     }
 
     public void editProfessor(Professor p){
-        Professor p1= profesores.stream()
-                .filter(prof -> prof.getId().equals(p.getId())).findFirst().get();
+        System.out.println(p.toString());
+        profesores.removeIf(p1-> p1.getId().equals(p.getId()));
+        profesores.add(p);
     }
 
     public void deleteProfessor(Long id){

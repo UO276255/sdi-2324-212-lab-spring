@@ -3,18 +3,18 @@ package com.uniovi.sdi2324212spring.entities;
 public class Professor {
     private Long id;
     private String dni;
-    private String nombre;
-    private String apellidos;
-    private String categoria;
+    private String name;
+    private String surname;
+    private String category;
 
     @Override
     public String toString() {
         return "Profesor{"+
                 "id= " + id +
-                "dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", categoria='" + categoria + '\'' +
+                ", dni='" + dni + '\'' +
+                ", nombre='" + name + '\'' +
+                ", apellidos='" + surname + '\'' +
+                ", categoria='" + category + '\'' +
                 '}';
     }
 
@@ -26,28 +26,43 @@ public class Professor {
         return dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getSurname() {
+        return surname;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getCategory() {
+        return category;
     }
     public void setId(Long id) {
         this.id = id;
     }
 
     public Professor(){}
-    public Professor(Long id, String dni, String nombre, String apellidos, String categoria) {
+    public Professor(Long id, String dni, String name, String surname, String categorie) {
         this.id = id;
         this.dni = dni;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.categoria = categoria;
+        this.name = name;
+        this.surname = surname;
+        this.category = categorie;
+    }
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }

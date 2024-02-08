@@ -86,9 +86,9 @@
             <tr th:each="p : ${professorList}">
                 <td scope="row" th:text="${p.id}"> 1</td>
                 <td th:text="${p.dni}"> Ejercicio 1</td>
-                <td th:text="${p.nombre}">nombre</td>
-                <td th:text="${p.apellidos}"> apellidos</td>
-                <td th:text="${p.categoria}">categoria</td>
+                <td th:text="${p.name}">nombre</td>
+                <td th:text="${p.surname}"> apellidos</td>
+                <td th:text="${p.category}">categoria</td>
                 <td><a th:href="${'/professor/details/' + p.id}">detalles</a></td>
                 <td><a th:href="${'/professor/edit/' + p.id}">modificar</a></td>
                 <td><a th:href="${'/professor/delete/' + p.id}">eliminar</a></td>

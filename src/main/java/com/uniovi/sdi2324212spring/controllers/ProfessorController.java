@@ -21,12 +21,13 @@ public class ProfessorController {
     }
 
     @RequestMapping(value = "/professor/add")
-    public String getProfessor() {
+    public String setProfessor(Model model) {
         return "professor/add";
     }
 
     @RequestMapping(value = "/professor/add", method = RequestMethod.POST)
     public String setProfessor(@ModelAttribute Professor p) {
+
         profesorService.addProfessor(p);
         return "redirect:/professor/list";
     }
@@ -49,7 +50,8 @@ public class ProfessorController {
     @RequestMapping(value="/professor/edit/{id}", method=RequestMethod.POST)
     public String setEdit(@ModelAttribute Professor p, @PathVariable Long id){
         p.setId(id);
-        profesorService.addProfessor(p);
+        System.out.println(p.toString());
+        profesorService.editProfessor(p);
         return "redirect:/professor/details/"+id;
     }
 }
