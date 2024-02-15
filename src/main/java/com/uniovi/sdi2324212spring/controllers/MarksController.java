@@ -3,18 +3,23 @@ package com.uniovi.sdi2324212spring.controllers;
 import com.uniovi.sdi2324212spring.entities.Mark;
 import com.uniovi.sdi2324212spring.services.MarksService;
 import com.uniovi.sdi2324212spring.services.UsersService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.uniovi.sdi2324212spring.validators.MarksValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MarksController {
     private final MarksService marksService;
     private final UsersService usersService;
-    public MarksController(MarksService marksService, UsersService usersService) {
+
+    private final MarksValidator marksValidator;
+    public MarksController(MarksService marksService, UsersService usersService, MarksValidator marksValidator) {
         this.marksService = marksService;
         this.usersService = usersService;
+        this.marksValidator = marksValidator;
     }
 
     @RequestMapping("/mark/list")
@@ -26,10 +31,16 @@ public class MarksController {
     @RequestMapping(value="/mark/add")
     public String getMark(Model model){
         model.addAttribute("usersList", usersService.getUsers());
+        model.addAttribute("mark", new Mark());
         return "mark/add";
     }
     @RequestMapping(value = "/mark/add", method = RequestMethod.POST)
-    public String setMark(@ModelAttribute Mark mark) {
+    public String setMark(@Validated Mark mark, BindingResult result,Model model) {
+        marksValidator.validate(mark,result);
+        model.addAttribute("usersList", usersService.getUsers());
+        if(result.hasErrors()){
+            return "/mark/add";
+        }
         marksService.addMark(mark);
         return "redirect:/mark/list";
     }
