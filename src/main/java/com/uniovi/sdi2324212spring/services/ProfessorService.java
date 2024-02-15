@@ -1,7 +1,7 @@
 package com.uniovi.sdi2324212spring.services;
 
 import com.uniovi.sdi2324212spring.entities.Professor;
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -1,9 +1,8 @@
 package com.uniovi.sdi2324212spring.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
-
 public class Mark {
     @Id
     @GeneratedValue
@@ -17,7 +16,7 @@ public class Mark {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Mark(Long id, String description, Double score) {
