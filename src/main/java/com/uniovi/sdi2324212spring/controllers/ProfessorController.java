@@ -2,6 +2,7 @@ package com.uniovi.sdi2324212spring.controllers;
 
 import com.uniovi.sdi2324212spring.entities.Mark;
 import com.uniovi.sdi2324212spring.entities.Professor;
+import com.uniovi.sdi2324212spring.repositories.ProfessorRepository;
 import com.uniovi.sdi2324212spring.services.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,9 +50,13 @@ public class ProfessorController {
     }
     @RequestMapping(value="/professor/edit/{id}", method=RequestMethod.POST)
     public String setEdit(@ModelAttribute Professor p, @PathVariable Long id){
-        p.setId(id);
-        System.out.println(p.toString());
-        profesorService.editProfessor(p);
+        Professor original = profesorService.getProfessor(id);
+        // modificar solo score y description
+        original.setName(p.getName());
+        original.setDni(p.getDni());
+        original.setSurname(p.getSurname());
+        original.setCategory(p.getCategory());
+        profesorService.addProfessor(original);
         return "redirect:/professor/details/"+id;
     }
 }

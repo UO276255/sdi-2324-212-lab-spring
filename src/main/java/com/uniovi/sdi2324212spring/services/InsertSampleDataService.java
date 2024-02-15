@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 
+import com.uniovi.sdi2324212spring.entities.Professor;
+import com.uniovi.sdi2324212spring.repositories.ProfessorRepository;
 import org.springframework.stereotype.Service;
 import com.uniovi.sdi2324212spring.entities.Mark;
 import com.uniovi.sdi2324212spring.entities.User;
@@ -11,9 +13,12 @@ import com.uniovi.sdi2324212spring.entities.User;
 public class InsertSampleDataService {
 
     private final UsersService usersService;
+    private final ProfessorService professorService;
 
-    public InsertSampleDataService(UsersService usersService) {
+    public InsertSampleDataService(UsersService usersService, ProfessorService professorService) {
+
         this.usersService = usersService;
+        this.professorService = professorService;
     }
 
     @PostConstruct
@@ -30,6 +35,14 @@ public class InsertSampleDataService {
         user5.setPassword("123456");
         User user6 = new User("99999988F", "Edward", "Núñez");
         user6.setPassword("123456");
+
+        Professor prof1 = new Professor("11111111L", "Jose", "Rodriguez","Matematicas");
+        Professor prof2 = new Professor("22222222K", "Maria", "Sanchez","Ciencias");
+        Professor prof3 = new Professor("33333333J", "Luisa", "Martinez","Historia");
+        professorService.addProfessor(prof1);
+        professorService.addProfessor(prof3);
+        professorService.addProfessor(prof2);
+
 
         Set<Mark> user1Marks = new HashSet<>() {
             {

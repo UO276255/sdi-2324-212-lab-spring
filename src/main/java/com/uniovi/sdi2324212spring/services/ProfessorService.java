@@ -1,7 +1,12 @@
 package com.uniovi.sdi2324212spring.services;
 
+import com.uniovi.sdi2324212spring.entities.Mark;
 import com.uniovi.sdi2324212spring.entities.Professor;
 import javax.annotation.PostConstruct;
+
+import com.uniovi.sdi2324212spring.repositories.MarksRepository;
+import com.uniovi.sdi2324212spring.repositories.ProfessorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,41 +15,23 @@ import java.util.List;
 @Service
 public class ProfessorService {
 
-
-
-    public List<Professor> profesores = new ArrayList<Professor>();
-
-    @PostConstruct
-    public void init() {
-        profesores.add(new Professor(1L,"114568675D","Juan","Gonzalez Campos","Matematicas"));
-        profesores.add(new Professor(2L,"256482169K","Susana", "Lopez Hidalgo","Historia"));
-    }
+    @Autowired
+    private ProfessorRepository professorRepository;
 
     public List<Professor> getProfesores(){
-        return this.profesores;
+        List<Professor> prof = new ArrayList<Professor>();
+        professorRepository.findAll().forEach(prof::add);
+        return prof;
     }
 
     public Professor getProfessor(Long id) {
-        return profesores.stream()
-                .filter(p -> p.getId().equals(id)).findFirst().get();
+        return professorRepository.findById(id).get();
     }
     public void addProfessor(Professor p) {
-        if (p.getId() == null) {
-            p.setId(profesores.get(profesores.size() - 1).getId() + 1);
-        }
-        System.out.println(p.toString());
-        profesores.add(p);
+        professorRepository.save(p);
     }
 
-    public void editProfessor(Professor p){
-        System.out.println(p.toString());
-        profesores.removeIf(p1-> p1.getId().equals(p.getId()));
-        profesores.add(p);
+    public void deleteProfessor(Long id) {
+        professorRepository.deleteById(id);
     }
-
-    public void deleteProfessor(Long id){
-        profesores.removeIf(p -> p.getId().equals(id));
-    }
-
-
 }
