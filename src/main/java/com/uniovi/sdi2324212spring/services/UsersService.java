@@ -39,6 +39,14 @@ public class UsersService {
         usersRepository.save(user);
     }
 
+    public void editUser(User user) {
+        User original = getUser(user.getId());
+        original.setDni(user.getDni());
+        original.setName(user.getName());
+        original.setLastName(user.getLastName());
+        usersRepository.save(user);
+    }
+
     public User getUserByDni(String dni) {
         return usersRepository.findByDni(dni);
     }

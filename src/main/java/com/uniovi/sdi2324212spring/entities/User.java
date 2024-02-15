@@ -11,7 +11,8 @@ public class User {
     @Column(unique = true)
     private String dni;
     private String name;
-    private String lastName;   private String role;
+    private String lastName;
+    private String role;
     private String password;
     @Transient //propiedad que no se almacena en la tabla.
     private String passwordConfirm;
