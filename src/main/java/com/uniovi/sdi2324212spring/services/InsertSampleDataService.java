@@ -9,7 +9,7 @@ import com.uniovi.sdi2324212spring.repositories.ProfessorRepository;
 import org.springframework.stereotype.Service;
 import com.uniovi.sdi2324212spring.entities.Mark;
 import com.uniovi.sdi2324212spring.entities.User;
-@Service
+//@Service
 public class InsertSampleDataService {
 
     private final UsersService usersService;
