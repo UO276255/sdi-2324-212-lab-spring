@@ -32,7 +32,8 @@ public class MarksController {
     @RequestMapping("/mark/list")
     public String getList(Model model) {
         model.addAttribute("marksList", marksService.getMarks());
-        return "mark/list";}
+        return "mark/list";
+    }
 
 
     @RequestMapping(value="/mark/add")
@@ -84,5 +85,15 @@ public class MarksController {
         return "mark/list :: marksTable";
     }
 
+    @RequestMapping(value = "/mark/{id}/resend", method = RequestMethod.GET)
+    public String setResendTrue(@PathVariable Long id) {
+        marksService.setMarkResend(true, id);
+        return "redirect:/mark/list";
+    }
+    @RequestMapping(value = "/mark/{id}/noresend", method = RequestMethod.GET)
+    public String setResendFalse(@PathVariable Long id) {
+        marksService.setMarkResend(false, id);
+        return "redirect:/mark/list";
+    }
 
 }

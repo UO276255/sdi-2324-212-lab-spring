@@ -10,6 +10,7 @@ public class Mark {
     private Long id;
     private String description;
     private Double score;
+    private Boolean resend = false;
     public Long getId() {
         return id;
     }
@@ -58,6 +59,13 @@ public class Mark {
     public void setUser(User user) {
         this.user = user;
     }
+    public Boolean getResend() {
+        return resend;
+    }
+    public void setResend(Boolean resend) {
+        this.resend = resend;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,4 +73,5 @@ public class Mark {
         Mark mark = (Mark) o;
         return Objects.equals(id, mark.id);
     }
+
 }
