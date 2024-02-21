@@ -31,12 +31,8 @@ public class MarksController {
 
     @RequestMapping("/mark/list")
     public String getList(Model model) {
-        Set<Mark> consultedList = (Set<Mark>) (httpSession.getAttribute("consultedList") != null ?
-                httpSession.getAttribute("consultedList") : new HashSet<>());
-        model.addAttribute("consultedList", consultedList);
         model.addAttribute("marksList", marksService.getMarks());
-        return "mark/list";
-    }
+        return "mark/list";}
 
 
     @RequestMapping(value="/mark/add")
