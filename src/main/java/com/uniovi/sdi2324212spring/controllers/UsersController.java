@@ -1,9 +1,11 @@
 package com.uniovi.sdi2324212spring.controllers;
 
+import com.uniovi.sdi2324212spring.services.MarksService;
 import com.uniovi.sdi2324212spring.services.RolesService;
 import com.uniovi.sdi2324212spring.services.SecurityService;
 import com.uniovi.sdi2324212spring.validators.SignUpFormValidator;
-import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,12 +26,15 @@ public class UsersController {
     private final SignUpFormValidator signUpFormValidator;
     private final RolesService rolesService;
 
+    private final MarksService marksService;
+
     public UsersController(UsersService usersService, SecurityService securityService, SignUpFormValidator
-            signUpFormValidator, RolesService rolesService) {
+            signUpFormValidator, RolesService rolesService, MarksService marksService) {
         this.usersService = usersService;
         this.securityService = securityService;
         this.signUpFormValidator = signUpFormValidator;
         this.rolesService = rolesService;
+        this.marksService = marksService;
     }
 
     @PostConstruct
@@ -100,11 +105,13 @@ public class UsersController {
     }
 
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home(Model model, Pageable pageable) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String dni = auth.getName();
         User activeUser = usersService.getUserByDni(dni);
-        model.addAttribute("markList", activeUser.getMarks());
+        Page<Mark> marks = marksService.getMarksForUser(pageable,activeUser);
+        model.addAttribute("marksList", marks.getContent());
+        model.addAttribute("page", marks);
         return "home";
     }
 
