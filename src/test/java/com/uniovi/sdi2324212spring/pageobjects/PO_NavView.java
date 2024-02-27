@@ -3,17 +3,16 @@ import com.uniovi.sdi2324212spring.util.SeleniumUtils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import com.uniovi.sdi2324212spring.pageobjects.*;
 import java.util.List;
 public class PO_NavView extends PO_View {
-
     /**
      * Clic en una de las opciones principales (a href) y comprueba que se vaya a la vista con el elemento de
-     * tipo type con el texto Destino
-     *
-     * @param driver:     apuntando al navegador abierto actualmente.
+     tipo type con el texto Destino
+     * @param driver: apuntando al navegador abierto actualmente.
      * @param textOption: Texto de la opción principal.
-     * @param criterio:   "id" or "class" or "text" or "@attribute" or "free". Si el valor de criterio es free es una
-     *                    expresion xpath completa.
+     * @param criterio: "id" or "class" or "text" or "@attribute" or "free". Si el valor de criterio es free es una
+    expresion xpath completa.
      * @param targetText: texto correspondiente a la búsqueda de la página destino.
      */
     public static void clickOption(WebDriver driver, String textOption, String criterio, String targetText) {
@@ -46,4 +45,5 @@ public class PO_NavView extends PO_View {
                 getTimeout());
         Selectedlanguage.get(0).click();
     }
+
 }
