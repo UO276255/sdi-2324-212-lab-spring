@@ -21,6 +21,7 @@ class Sdi2324212SpringApplicationTests {
     public static WebDriver getDriver(String PathFirefox, String Geckodriver) {
         System.setProperty("webdriver.firefox.bin", PathFirefox);
         System.setProperty("webdriver.gecko.driver", Geckodriver);
+
         driver = new FirefoxDriver();
         return driver;
     }
