@@ -133,8 +133,51 @@ class Sdi2324212SpringApplicationTests {
         List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
         Assertions.assertEquals(checkText, result.get(0).getText());
     }
+
     @Test
     @Order(10)
+    public void PR08() {
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        PO_LoginView.fillLoginForm(driver, "99999993D", "123456");
+        String checkText = "Notas del usuario";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+    @Test
+    @Order(11)
+    public void PR09() {
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        PO_LoginView.fillLoginForm(driver, "99999988F", "123456");
+        String checkText = "Notas del usuario";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+    @Test
+    @Order(12)
+    public void PR10() {
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        PO_LoginView.fillLoginForm(driver, "99999990A", "1234567");
+        String checkText = "Identifícate";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+
+    @Test
+    @Order(13)
+    public void PR11() {
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        PO_LoginView.fillLoginForm(driver, "99999990A", "123456");
+        String checkText = "Notas del usuario";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+        By boton = By.xpath("/html/body/nav/div/div[2]/ul/li[2]/a/span");
+        driver.findElement(boton).click();
+    }
+    @Test
+    @Order(14)
     public void PR12() {
         PO_PrivateView.login(driver, "99999990A", "123456","Notas del usuario");
         //Contamos el número de filas de notas
@@ -149,7 +192,7 @@ class Sdi2324212SpringApplicationTests {
     }
 
     @Test
-    @Order(11)
+    @Order(15)
     public void PR13() {
         PO_PrivateView.login(driver, "99999990A", "123456","Notas del usuario");
         //SeleniumUtils.esperarSegundos(driver, 1);
@@ -165,7 +208,7 @@ class Sdi2324212SpringApplicationTests {
     }
 
     @Test
-    @Order(11)
+    @Order(16)
     public void PR14() {
         //Vamos al formulario de login.
         PO_PrivateView.login(driver, "99999993D", "123456","99999993D");
@@ -185,7 +228,7 @@ class Sdi2324212SpringApplicationTests {
     }
 
     @Test
-    @Order(13)
+    @Order(17)
     public void PR15() {
         PO_PrivateView.login(driver, "99999993D", "123456","99999993D");
         //Pinchamos en la opción de menú de Notas: //li[contains(@id, 'marks-menu')]/a
